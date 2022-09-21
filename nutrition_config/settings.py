@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config #keeps secret_key secure
+
+# API Keys
+x_app_id = config("x-app-id")
+x_app_key = config("x-app-key")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,8 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zlh=#+a7#y%lfq4+&92*%&#8eh(+^l5vb%oojw#u&2!f8zgu3r'
-
+SECRET_KEY = config("SECRET_KEY") 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'meal_plan.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
