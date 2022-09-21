@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FoodChart from './FoodChart';
+import FoodTable from './FoodTable';
 
 function FetchForm() {
 
@@ -22,12 +22,10 @@ function FetchForm() {
         };
 
         const response = await fetch(url, fetchConfig);
-        console.log(response)
 
         if (response.ok) {
             const query = await response.json()
             setIsSubmitted(true)
-            console.log(query)
             setFetchResults(query)
         }
     }
