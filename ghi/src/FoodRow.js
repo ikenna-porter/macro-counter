@@ -1,13 +1,31 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 function FoodRow(props) {
-    console.log(props)
-    const [food, setFood] = useState({...props.food})
+    const [food, setFood] = useState({...props.food,})
+
+    //adds to state the initial serving weight which is later used to calculate macronutrients
+    //useEffect prevents initial serving weight from resetting every time component renders
+    useEffect(() => {
+        setFood({
+            ...food,
+            initial_serving_weight: food.serving_weight_grams
+        })
+    }, [])
+
+
     console.log(food)
 
     const handleChange = e => {
         const {name, value} = e.target;
         setFood((prevState) => ({...prevState, [name]: value}))
+    }
+
+    const handleServingUnitChange = e => {
+        setFood((prevState) => ({
+            ...prevState, 
+            serving_weight_grams: parseInt(e.target.value),
+            serving_unit: e.target.selectedOptions[0].label
+        }))
     }
 
     return (
@@ -16,7 +34,18 @@ function FoodRow(props) {
                 <td>
                     <input type="number" min="1" name="serving_qty" onChange={handleChange} value={food.serving_qty} />
                 </td>
-                <td>{food.serving_unit}</td>
+                <td>
+                    <select onChange={handleServingUnitChange} name="serving_unit" id="serving_unit">
+                        <option value="">Choose a serving unit</option>
+                        {food.alt_measures.map( measure => {
+                            return (
+                                <option key={measure.seq} label={measure.measure} value={measure.serving_weight}>
+                                    {measure.measure}
+                                </option>
+                            )
+                        })}
+                    </select>
+                </td>
                 <td>{food.nf_calories}</td>
                 <td>{food.nf_total_carbohydrate}</td>
                 <td>{food.nf_protein}</td>
