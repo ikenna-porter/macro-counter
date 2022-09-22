@@ -33,13 +33,8 @@ function FetchForm() {
         <div>
             <div className="d-flex justify-content-center mt-5">
                 <form onSubmit={handleSubmit}>
-                    {/* <div className="input-group"> */}
-                        {/* <div className="input-group-prepend">
-                            <span className="input-group-text">Ingredients</span>
-                        </div> */}
-                            <textarea onChange={e => setInput(e.target.value)} className="form-control" aria-label="With textarea" style={{width: "40vw", height: "20vh"}} placeholder="Slice of bread, cream cheese, eggs">
+                            <textarea onChange={e => setInput(e.target.value)} className="form-control" aria-label="With textarea" style={{width: "40vw", height: "20vh"}} placeholder="Pizza, whipped cream, carrots, etc.">
                             </textarea>
-                    {/* </div> */}
                     <button type="submit" className="btn btn-dark">Submit</button>
                 </form>
             </div>
