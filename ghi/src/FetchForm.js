@@ -9,7 +9,6 @@ function FetchForm() {
 
     const handleSubmit = async e => {
         e.preventDefault()
-        console.log('form submitted')
         const url = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
         const fetchConfig = {
             method: "POST",

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 
 function FoodRow(props) {
-    const [food, setFood] = useState({...props.food,})
+    const [food, setFood] = useState({...props.food, initial_serving_weight:''})
 
     //adds to state the initial serving weight which is later used to calculate macronutrients
     //useEffect prevents initial serving weight from resetting every time component renders
@@ -10,10 +10,7 @@ function FoodRow(props) {
             ...food,
             initial_serving_weight: food.serving_weight_grams
         })
-    }, [])
-
-
-    console.log(food)
+    }, [food.initial_serving_weight])
 
     const handleChange = e => {
         const {name, value} = e.target;
@@ -46,10 +43,18 @@ function FoodRow(props) {
                         })}
                     </select>
                 </td>
-                {/* <td>{(food.nf_calories / initial_serving_weight) * food.serving_weight_grams}</td>
-                <td>{(food.nf_total_carbohydrate / initial_serving_weight) * food.serving_weight_grams}</td>
-                <td>{(food.nf_protein / initial_serving_weight) * food.serving_weight_grams}</td>
-                <td>{(food.nf_total_fat / initial_serving_weight) * food.serving_weight_grams}</td> */}
+                <td>
+                    {Math.round((food.nf_calories / food.initial_serving_weight) * food.serving_weight_grams * food.serving_qty * 100) / 100}
+                </td>
+                <td>
+                    {Math.round((food.nf_total_carbohydrate / food.initial_serving_weight) * food.serving_weight_grams * food.serving_qty * 100) / 100}
+                </td>
+                <td>
+                    {Math.round((food.nf_protein / food.initial_serving_weight) * food.serving_weight_grams * food.serving_qty * 100) / 100}
+                </td>
+                <td>
+                    {Math.round((food.nf_total_fat / food.initial_serving_weight) * food.serving_weight_grams * food.serving_qty * 100) / 100}
+                </td>
             </tr>
     )
 }
