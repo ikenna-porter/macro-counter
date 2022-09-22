@@ -46,10 +46,10 @@ function FoodRow(props) {
                         })}
                     </select>
                 </td>
-                <td>{food.nf_calories}</td>
-                <td>{food.nf_total_carbohydrate}</td>
-                <td>{food.nf_protein}</td>
-                <td>{food.nf_total_fat}</td>
+                {/* <td>{(food.nf_calories / initial_serving_weight) * food.serving_weight_grams}</td>
+                <td>{(food.nf_total_carbohydrate / initial_serving_weight) * food.serving_weight_grams}</td>
+                <td>{(food.nf_protein / initial_serving_weight) * food.serving_weight_grams}</td>
+                <td>{(food.nf_total_fat / initial_serving_weight) * food.serving_weight_grams}</td> */}
             </tr>
     )
 }
